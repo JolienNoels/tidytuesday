@@ -30,3 +30,4 @@ data %>%
   labs(title = "High-speed internet connection in the US" ,
        caption = "Data: Microsoft\n
        broadband speed defined as 25Mbps download speed (US Federal Communications Commission’s standard for “high-speed internet)")
+
