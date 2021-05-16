@@ -1,5 +1,5 @@
 # Date created: 13-05-2021
-# Date updated: 15-05-2021
+# Date updated: 16-05-2021
 # Tidytuesday contribution for week 20 on US broadband data
 
 ## 0 Packages ----------------------------------------------------------------------------------------------------------
@@ -15,7 +15,7 @@ my_theme <- theme(plot.background = element_rect(colour = "#CBDAF6", fill = "#CB
                   panel.grid.major.x = element_blank(),
                   legend.position = "top",
                   legend.title = element_text(size=13),
-                  axis.ticks.x = element_blank(),
+                  axis.ticks = element_blank(),
                   axis.title.y = element_text(hjust = 1))
 
 
@@ -83,9 +83,6 @@ p2 <- data %>%
         axis.text.x = element_text(size=13, face="bold"),
         axis.title = element_text(size=13))
 
-#956D95
-#9E6E8D","#993955","#8368BC","#0E0AFF"
-
 
 p1 <- map %>% 
   ggplot() +
@@ -108,9 +105,9 @@ p1 + p2  +
   plot_layout(widths = c(2, 1)) +
   plot_annotation(
   title = 'US rural-urban divide in high-speed internet connection',
-  subtitle = '% of residents using high-speed internet, November 2019\n',
-  caption = 'Broadband data: Microsoft & TidyTuesday. Population data: US Census. Rural Urban contnuum: USDA & own aggregation. | graph: Jolien Noels\n
-       Broadband speed defined as 25Mbps download speed (US Federal Communications Commission’s standard for high-speed internet)'
+  subtitle = '% of residents using internet at broadband speeds, November 2019\n',
+  caption = 'Broadband data: Microsoft via TidyTuesday. Population data: US Census. Rural-Urban Continuum: USDA & own aggregation. | graph: Jolien Noels\n
+       Broadband speed defined as 25Mbps or above download speed (US Federal Communications Commission’s standard for high-speed internet)'
 ) &
   my_theme &
   theme(plot.title = element_text(size=20, face="bold", hjust = 0.5),
