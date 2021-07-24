@@ -38,13 +38,13 @@ map$broadband_usage <- cut(map$broadband_usage,
                            labels=c("0-20%","20%-40%","40%-60%","60%-80%","80%-100%"))
 
 # rural urban classification from https://www.ers.usda.gov/data-products/rural-urban-continuum-codes.aspx
-class <- read.csv("https://raw.githubusercontent.com/JolienNoels/tidytuesday/main/2021/ruralurbancodes2013.csv") %>% 
+class <- read.csv("https://raw.githubusercontent.com/JolienNoels/tidytuesday/main/2021/2021-05-11-broadband/ruralurbancodes2013.csv") %>% 
   clean_names() %>% 
   mutate(fips = sprintf("%05d" , i_fips)) %>% 
   mutate(population_2010 = str_remove(population_2010, ",")) 
   
 # population data from https://www.census.gov/data/datasets/time-series/demo/popest/2010s-counties-total.html
-pop <- read.csv("https://raw.githubusercontent.com/JolienNoels/tidytuesday/main/2021/co-est2019-annres.csv") %>% 
+pop <- read.csv("https://raw.githubusercontent.com/JolienNoels/tidytuesday/main/2021/2021-05-11-broadband/co-est2019-annres.csv") %>% 
   clean_names() %>% 
   rename(population_2019 = x2019) %>% 
   rename(county_name = i_geographic_area) %>% 
