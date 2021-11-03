@@ -2,7 +2,7 @@ My contributions to #TidyTuesday
 TidyTuesday repo: https://github.com/rfordatascience/tidytuesday
 
 ## **2021 week 45: Maps**
-![./2021/2021-11-08-maps/elec_eu.png](https://github.com/JolienNoels/tidytuesday/blob/main/2021/2021-11-08-maps/2021-11-08-maps.png)
+![./2021/2021-11-08-maps/elec_eu.png](https://github.com/JolienNoels/tidytuesday/blob/main/2021/2021-11-08-maps/elec_eu.png)
 
 ## **2021 week 30: US droughts**
 ![./2021/2021-07-22-droughts/2021-07-22-streamplot.png](https://github.com/JolienNoels/tidytuesday/blob/main/2021/2021-07-22-droughts/2021-07-22-streamplot.png)
