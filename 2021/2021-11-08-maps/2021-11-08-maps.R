@@ -42,7 +42,7 @@ data %>%
   geom_rect(aes(fill = category), colour = "white") +
   geom_text(
     aes(x = column, y = row + 1, label = iso3), 
-    color = "white", nudge_x = 0.5, nudge_y = 0.5, size = 5
+    color = "white", nudge_x = 0.5, nudge_y = 0.5, size = 4
   ) + 
   scale_y_reverse() +
   scale_fill_manual(values = c("#F3E9DA","#dbcbbd","#c87941","#87431d","#290001")) +
@@ -54,15 +54,15 @@ data %>%
   ) +
   theme(
     legend.position = "left",
-    legend.text = element_text(size=16),
-    legend.title = element_text(size=16),
-    plot.title = element_text(size=20)
+    legend.text = element_text(size = 12),
+    legend.title = element_text(size = 12),
+    plot.title = element_text(size = 16)
   )
 
 ggsave(
   path = dir,
   "elec_eu.png", 
-  width = 20, 
-  height = 20, 
+  width = 15, 
+  height = 15, 
   units = "cm"
 )
