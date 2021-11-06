@@ -45,17 +45,18 @@ data %>%
   ) + 
   scale_y_reverse() +
   scale_fill_manual(values = c("#F3E9DA","#dbcbbd","#c87941","#87431d","#290001")) +
-  theme_void() +
   labs(
     fill = "% of total\nproduction",
     caption = "Data source: Ember. Graph: Jolien Noels.",
     title = "Electricity generation from fossil fuels, 2019"
   ) +
+  theme_void() +
   theme(
     legend.position = "left",
     legend.text = element_text(size = 12),
     legend.title = element_text(size = 12),
-    plot.title = element_text(size = 14, hjust = 0)
+    plot.title = element_text(size = 14, hjust = 0),
+    plot.background = element_rect(fill = "white", colour = "white")
   ) 
 
 ggsave(
