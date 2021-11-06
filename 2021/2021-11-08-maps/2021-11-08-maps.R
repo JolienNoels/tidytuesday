@@ -1,9 +1,8 @@
 
-
 # 0 Packages --------------------------------------------------------------
 
 library(tidyverse)
-
+library(readxl)
 
 # 1 Global ----------------------------------------------------------------
 
@@ -16,8 +15,8 @@ elec <- read_excel(path = fs::path(dir, "Data-Global-Electricity-Review-2021.xls
 elec <- elec %>% 
   janitor::clean_names()
 elec <- elec %>% 
-  rename(country = area)
-elec$share_of_production_percent <- as.numeric(elec$share_of_production_percent)
+  rename(country = area) %>% 
+  mutate(share_of_production_percent = as.numeric(share_of_production_percent))
 elec$category <- cut(
   elec$share_of_production_percent, 
   breaks = c(-1, 20, 40, 60, 80, 101), 
@@ -48,21 +47,21 @@ data %>%
   scale_fill_manual(values = c("#F3E9DA","#dbcbbd","#c87941","#87431d","#290001")) +
   theme_void() +
   labs(
-    fill = "% of total production",
+    fill = "% of total\nproduction",
     caption = "Data source: Ember. Graph: Jolien Noels.",
-    title = "Electricity generation from fossil fuels"
+    title = "Electricity generation from fossil fuels, 2019"
   ) +
   theme(
     legend.position = "left",
     legend.text = element_text(size = 12),
     legend.title = element_text(size = 12),
-    plot.title = element_text(size = 16)
-  )
+    plot.title = element_text(size = 14, hjust = 0)
+  ) 
 
 ggsave(
   path = dir,
   "elec_eu.png", 
-  width = 15, 
-  height = 15, 
+  width = 14, 
+  height = 14, 
   units = "cm"
 )
