@@ -1,5 +1,6 @@
-My contributions to #TidyTuesday  
-TidyTuesday repo: https://github.com/rfordatascience/tidytuesday
+My contributions to [#TidyTuesday](https://github.com/rfordatascience/tidytuesday)
+
+## **2022 week 15: Air pollution**
 
 ## **2021 week 45: Maps**
 ![./2021/2021-11-08-maps/elec_eu.png](https://github.com/JolienNoels/tidytuesday/blob/main/2021/2021-11-08-maps/elec_eu.png)
