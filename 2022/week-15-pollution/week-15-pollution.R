@@ -3,11 +3,9 @@
 
 library(tidyverse)
 library(countrycode)
+library(ggrepel)
 
-# 1 Global ----------------------------------------------------------------
-
-
-# 2 Data ------------------------------------------------------------------
+# 1 Data ------------------------------------------------------------------
 
 data <- tidytuesdayR::tt_load('2022-04-12')
 
@@ -35,16 +33,44 @@ poll <- left_join(
   )) 
 
 
-# 3 Graph -----------------------------------------------------------------
+# 2 Graph -----------------------------------------------------------------
 
 poll %>% 
   filter(continent == "Africa") %>% 
+  left_join(colored_dat, by = c("entity")) %>% 
   ggplot(aes(x = access, y = deaths)) +
-  #geom_point() +
-  geom_line(
-    aes(group = entity), 
-    arrow = arrow(length=unit(0.20,"cm"), type = "closed")
-  )
+  geom_path(
+    aes(group = entity), colour = "#06042a", 
+    arrow = arrow(length = unit(0.20,"cm"), type = "closed")
+  ) +
+  geom_text(
+    data = . %>% filter(year == "2016")  %>% 
+      filter(entity %in% 
+               c("Equatorial Guina", "Angola", "Ethiopia",
+                 "Rwanda", "Sudan", "Congo")), 
+    aes(label = entity), colour = "#072ecf"
+  ) +
+  labs(
+    x = "population share with access to clean fuel (%)",
+    y = "Indoor air pollution death rate",
+    title = "Change 2000 and 2016 in African countries\n2000->2016",
+    caption = "\nData source: Our world in Data | @JolienNoels"
+  ) +
+  theme(
+    plot.background = element_rect(colour = "#f1dfdb", fill = "#f1dfdb"),
+    panel.background = element_rect(colour = "#f1dfdb", fill = "#f1dfdb"),
+    panel.grid.minor.y = element_blank(),
+    legend.position = "top",
+    legend.title = element_text(size=13),
+    axis.ticks = element_blank(),
+    axis.title = element_text(hjust = 1)
+  ) +
+  ggeasy::easy_center_title()
+
+ggsave(
+  fs::path(here::here('2022/week-15-pollution'), "pollution.png"),
+  height = 15, width = 30, units = "cm"
+)
 
 
 
