@@ -4,6 +4,7 @@
 library(tidyverse)
 library(countrycode)
 library(ggrepel)
+library(ggtext)
 
 # 1 Data ------------------------------------------------------------------
 
@@ -37,40 +38,46 @@ poll <- left_join(
 
 poll %>% 
   filter(continent == "Africa") %>% 
-  left_join(colored_dat, by = c("entity")) %>% 
   ggplot(aes(x = access, y = deaths)) +
   geom_path(
-    aes(group = entity), colour = "#06042a", 
+    aes(group = entity), colour = "#34293D", 
     arrow = arrow(length = unit(0.20,"cm"), type = "closed")
   ) +
-  geom_text(
+  geom_path(
+    data = . %>% filter(entity %in% 
+                          c("Equatorial Guina", "Angola", "Ethiopia",
+                                      "Rwanda", "Sudan", "Congo")),
+    aes(group = entity), colour = "#F68989", size = 1.5,
+    arrow = arrow(length = unit(0.20,"cm"), type = "closed")
+  ) +
+  geom_text_repel(
     data = . %>% filter(year == "2016")  %>% 
       filter(entity %in% 
                c("Equatorial Guina", "Angola", "Ethiopia",
                  "Rwanda", "Sudan", "Congo")), 
-    aes(label = entity), colour = "#072ecf"
+    aes(label = entity), colour = "#F68989", 
+    position = position_nudge(x = 1, y = -5)
   ) +
+  scale_x_continuous(labels=scales::percent_format(scale=1, accuracy=1)) +
   labs(
-    x = "population share with access to clean fuel (%)",
-    y = "Indoor air pollution death rate",
-    title = "Change 2000 and 2016 in African countries\n2000->2016",
-    caption = "\nData source: Our world in Data | @JolienNoels"
+    x = "Population share with access to clean cooking fuels (%)",
+    y = "Indoor air pollution death rate\n(number of deaths per 100,000 individuals)",
+    title = "**Change in indoor air pollution death rates and acces to clean fuels in African countries** <br>2000→2016 <br> <span style = 'color: #F68989;'>Highest reductions</span>",
+    subtitle = usefunc::str_wrap_break("In 2019, about 4% of global deaths were attributed to indoor air pollution. Death rates are higher in lower-income countries, particularly across Sub-Saharan Africa and Asia. However, annual deaths from indoor air pollution have declined globally. Indoor air pollution results from the burning of solid fuels such as crop waste, dung, charcoal and coal for cooking and heating in households.", break_limit = 120),
+    caption = "\nData source: Our World in Data | @JolienNoels"
   ) +
   theme(
-    plot.background = element_rect(colour = "#f1dfdb", fill = "#f1dfdb"),
-    panel.background = element_rect(colour = "#f1dfdb", fill = "#f1dfdb"),
+    plot.background = element_rect(colour = "#F3E5D6", fill = "#F3E5D6"),
+    plot.title = element_markdown(hjust=.5, lineheight=1.5),
+    panel.background = element_rect(colour = "#F3E5D6", fill = "#F3E5D6"),
     panel.grid.minor.y = element_blank(),
     legend.position = "top",
     legend.title = element_text(size=13),
     axis.ticks = element_blank(),
     axis.title = element_text(hjust = 1)
-  ) +
-  ggeasy::easy_center_title()
+  ) 
 
 ggsave(
   fs::path(here::here('2022/week-15-pollution'), "pollution.png"),
-  height = 15, width = 30, units = "cm"
+  height = 14, width = 22, units = "cm"
 )
-
-
-
