@@ -62,7 +62,7 @@ poll %>%
   labs(
     x = "Population share with access to clean cooking fuels (%)",
     y = "Indoor air pollution death rate\n(number of deaths per 100,000 individuals)",
-    title = "**Change in indoor air pollution death rates and acces to clean fuels in African countries** <br>2000→2016 <br> <span style = 'color: #F68989;'>Highest reductions</span>",
+    title = "**Change in indoor air pollution death rates and acces to clean fuels in African countries** <br>2000→2016 <br> <span style = 'color: #F68989;'>Largest reductions</span>",
     subtitle = usefunc::str_wrap_break("In 2019, about 4% of global deaths were attributed to indoor air pollution. Death rates are higher in lower-income countries, particularly across Sub-Saharan Africa and Asia. However, annual deaths from indoor air pollution have declined globally. Indoor air pollution results from the burning of solid fuels such as crop waste, dung, charcoal and coal for cooking and heating in households.", break_limit = 120),
     caption = "\nData source: Our World in Data | @JolienNoels"
   ) +
